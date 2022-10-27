@@ -1,10 +1,10 @@
 import './App.css';
 import Userdata from './Pages/Userdata';
-import Sidebar from './Components/Sidebar';
+import Navigation from './Components/Navigation';
 function App() {
   return (
     <div className="wrapper">
-       <Sidebar />
+<Navigation />
       <Userdata />
      
     </div>
