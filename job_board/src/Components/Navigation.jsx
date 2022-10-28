@@ -5,10 +5,10 @@ const Navigation = () => {
     <div className=' h-10 border-b-[1px] sticky mb-10 flex justify-center items-center '>
         <div className=' w-[1440px] mx-auto flex gap-[2rem] p-10 justify-end'>
           <div>
-           <NavLink to="/" activeClassName='active' className='text-gray-400'> Home </NavLink> 
+           <NavLink to="/" ClassName='active' className=' text-gray-400'> Home </NavLink> 
           </div>
           <div>
-            <NavLink activeClassName='active' className=' text-gray-400' to="/Randomuser" >RandomUser</NavLink> 
+            <NavLink ClassName='active' className=' text-gray-400' to="/Randomuser" >RandomUser</NavLink> 
           </div>
         </div>
     </div>

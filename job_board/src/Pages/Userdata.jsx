@@ -8,27 +8,43 @@ import ReactPaginate from 'react-paginate';
 const Userdata = () => {
 const [userData, setData] = useState(null);
 const [loading, setLoading] = useState(false)
-const [currentPage, setCurrentPage] = useState([])
 const [items, setItems] = useState([])
-const baseapi =  `https://randomuser.me/api/?page=${currentPage}&results=10&seed=abc`;
+const [currentPage, setCurrentPage] = useState("")
+const baseapi =  `https://randomuser.me/api/?page=1&results=10&seed=abc`;
+// const newapi = `https://randomuser.me/api/?page=${currentPage}&results=10&seed=abc`
    useEffect(() => {
     setTimeout( setLoading, 800, true)
-        const getData = async() => {
+       const getData = async() => {
         const response = await axios.get(baseapi) 
         const userResult = response.data.results
         setData(userResult) 
-        }
+        } 
         getData()
     }, [])
 
 
+
+
+    // const handlePageClick = async(data) => {
+    //     let currentPage = data.selected + 1
+    //     const response = await axios.get(newapi) 
+    //     const userResult = response.data.results
+    //     setData(userResult) 
+    //     } 
+        
+
+     
+
     //The issue is from here handlePageClick needs to connect to the api axios
-    const handlePageClick = async (data) => {
-        console.log(data.selected)
-        console.log(currentPage)
-        const allUserData = await baseapi(currentPage)
-        setItems(allUserData)
-    }
+    // const handlePageClick = async (data) => {
+    //     console.log(data.selected)
+    //    let currentPage = data.selected + 1
+    //    console.log(currentPage)
+    //     const newUserData =  await fetchNewData(currentPage)
+
+    //     setItems(newUserData)
+       
+    // }
 
      
   return (
@@ -61,12 +77,13 @@ const baseapi =  `https://randomuser.me/api/?page=${currentPage}&results=10&seed
         }
             <ReactPaginate className='flex justify-center items-center gap-5'
                 previousLabel={'Prev'}
-                previousClassName='bg-red-600 px-5 py-2 rounded-full ' 
+                previousClassName='hover:bg-gray-900 text-white bg-gray-400  px-5 py-2 rounded-full ' 
                 nextLabel={'Next'}
-                nextClassName='bg-red-600 px-5 py-2 rounded-full '
+                nextClassName='hover:bg-gray-900 text-white bg-gray-400 px-5 py-2 rounded-full '
                 breakLabel={''}
                 pageCount={5}
-                onPageChange={handlePageClick}
+                // onPageChange={handlePageClick}
+                activeClassName='active'
             />
         </div>
 
