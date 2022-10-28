@@ -21,6 +21,8 @@ const baseapi =  `https://randomuser.me/api/?page=${currentPage}&results=10&seed
         getData()
     }, [])
 
+
+    //The issue is from here handlePageClick needs to connect to the api axios
     const handlePageClick = async (data) => {
         console.log(data.selected)
         console.log(currentPage)
@@ -31,8 +33,8 @@ const baseapi =  `https://randomuser.me/api/?page=${currentPage}&results=10&seed
      
   return (
     <div className='w-[1200px] mx-auto'>
-        <div className='flex items-center  justify-center gap-[10rem] bg-gray-400 px-10 py-[1rem] text-black font-[600] rounded-tr-[1rem] rounded-tl-[1rem]'>
-            <div className='flex gap-[3rem]'>
+        <table className='flex items-center  justify-center gap-[10rem] bg-gray-900 px-10 py-[1rem] text-white font-[600] rounded-tr-[1rem] rounded-tl-[1rem]'>
+            <div className='flex gap-[5rem]'>
                 <div>Image</div>
                 <p>Name</p>
             </div>
@@ -40,7 +42,7 @@ const baseapi =  `https://randomuser.me/api/?page=${currentPage}&results=10&seed
             <div>Country</div>
             <div>Cell No</div>
             <div>Gender</div>
-        </div>
+        </table>
         {!loading && <div>Loading</div>}
         <div className='flex flex-col px-10 py-[1rem]  mt-5'>
         {
@@ -48,25 +50,24 @@ const baseapi =  `https://randomuser.me/api/?page=${currentPage}&results=10&seed
             <div key={yourData.id} className='flex items-center gap-[6rem]  my-[10px]'>
                 <div className='flex gap-[3rem] items-center '>
                     <img src={yourData.picture.medium} />
-                    <p className='w-[5rem] bg-red-600 flex justify-center'>{yourData.name.first}</p>
+                    <p className='w-[5rem] flex justify-center'>{yourData.name.first}</p>
                 </div>
-                <p className=' bg-red-900 flex justify-start w-[15rem]'>{yourData.email}</p>
-                <div className='w-[5rem] bg-red-500'>{yourData.location.country}</div>
-                <div className='w-[10rem] bg-red-500 '>{yourData.cell}</div>
+                <p className=' flex justify-start w-[15rem]'>{yourData.email}</p>
+                <div className='w-[5rem] '>{yourData.location.country}</div>
+                <div className='w-[10rem] '>{yourData.cell}</div>
                 <div>{yourData.gender}</div>
             </div>
             ])
         }
             <ReactPaginate className='flex justify-center items-center gap-5'
-            previousLabel={'Prev'}
-            previousClassName='bg-red-600 px-5 py-2 rounded-full ' 
-            nextLabel={'Next'}
-            nextClassName='bg-red-600 px-5 py-2 rounded-full '
-            breakLabel={''}
-            pageCount={25}
-            onPageChange={handlePageClick}
+                previousLabel={'Prev'}
+                previousClassName='bg-red-600 px-5 py-2 rounded-full ' 
+                nextLabel={'Next'}
+                nextClassName='bg-red-600 px-5 py-2 rounded-full '
+                breakLabel={''}
+                pageCount={5}
+                onPageChange={handlePageClick}
             />
-            {/* <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} /> */}
         </div>
 
     </div>

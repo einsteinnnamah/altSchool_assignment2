@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className='w-screen bg-white h-screen absolute '>
 
-    <div className=' translate-x-[-50%] translate-y-[-50%] absolute top-[40%] flex justify-center flex-col items-center left-[50%] border-4 px-20 py-[5rem] border-gray-600  text-center'>
+    <div className=' translate-x-[-50%] translate-y-[-50%] absolute top-[40%] flex justify-center flex-col items-center left-[50%] border-4 px-20 py-[3rem] border-gray-600  text-center'>
         <p className='font-[700] text-[30px]'>Welcome </p>
         <img src={entry} />
         <h1 className='mt-5'>
