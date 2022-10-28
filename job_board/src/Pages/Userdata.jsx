@@ -3,30 +3,29 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react';
 import axios from "axios";
+import Pagination from '../Components/Pagination';
 const Userdata = () => {
-const [userData, setData] = React.useState(null);
-    const baseapi = "https://randomuser.me/api/?results=50";
-
-    React.useEffect(() => {
-        // axios.get(baseapi).then((response) => {
-        // setData(response.data)
-        // console.log(data)
-        // })
-       
+const [userData, setData] = useState(null);
+const [loading, setLoading] = useState(false)
+const [currentPage, setCurrentPage] = useState(1)
+const baseapi = "https://randomuser.me/api/?results=5";
+   useEffect(() => {
+    setTimeout( setLoading, 800, true)
         const getData = async() => {
-            const response = await axios.get(baseapi) 
-            const userResult = response.data.results
-            console.log(response.data.results)
-            setData(userResult)
+                const response = await axios.get(baseapi) 
+                const userResult = response.data.results
+                console.log(response.data.results)
+                setData(userResult) 
         }
         getData()
     }, [])
     
-
+    console.log(userData)
+    console.log(loading)
 
   return (
     <div className='w-[1200px] mx-auto'>
-    
+        
         <div className='flex items-center  justify-center gap-[10rem] bg-gray-400 px-10 py-[1rem] text-black font-[600] rounded-tr-[1rem] rounded-tl-[1rem]'>
             <div className='flex gap-[3rem]'>
                 <div>Image</div>
@@ -37,11 +36,10 @@ const [userData, setData] = React.useState(null);
             <div>Cell No</div>
             <div>Gender</div>
         </div>
-
+        {!loading && <div>Loading</div>}
         <div className='flex flex-col px-10 py-[1rem]  mt-5'>
         {
             userData?.map((yourData, i) =>[
-                // 
             <div key={yourData.id} className='flex items-center gap-[6rem]  my-[10px]'>
                 <div className='flex gap-[3rem] items-center '>
                     <img src={yourData.picture.medium} />
@@ -54,7 +52,7 @@ const [userData, setData] = React.useState(null);
             </div>
             ])
         }
-
+            <Pagination />
         </div>
 
     </div>
