@@ -3,29 +3,34 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react';
 import axios from "axios";
-import Pagination from '../Components/Pagination';
+import ReactPaginate from 'react-paginate';
+
 const Userdata = () => {
 const [userData, setData] = useState(null);
 const [loading, setLoading] = useState(false)
-const [currentPage, setCurrentPage] = useState(1)
-const baseapi = "https://randomuser.me/api/?results=5";
+const [currentPage, setCurrentPage] = useState([])
+const [items, setItems] = useState([])
+const baseapi =  `https://randomuser.me/api/?page=${currentPage}&results=10&seed=abc`;
    useEffect(() => {
     setTimeout( setLoading, 800, true)
         const getData = async() => {
-                const response = await axios.get(baseapi) 
-                const userResult = response.data.results
-                console.log(response.data.results)
-                setData(userResult) 
+        const response = await axios.get(baseapi) 
+        const userResult = response.data.results
+        setData(userResult) 
         }
         getData()
     }, [])
-    
-    console.log(userData)
-    console.log(loading)
 
+    const handlePageClick = async (data) => {
+        console.log(data.selected)
+        console.log(currentPage)
+        const allUserData = await baseapi(currentPage)
+        setItems(allUserData)
+    }
+
+     
   return (
     <div className='w-[1200px] mx-auto'>
-        
         <div className='flex items-center  justify-center gap-[10rem] bg-gray-400 px-10 py-[1rem] text-black font-[600] rounded-tr-[1rem] rounded-tl-[1rem]'>
             <div className='flex gap-[3rem]'>
                 <div>Image</div>
@@ -52,7 +57,16 @@ const baseapi = "https://randomuser.me/api/?results=5";
             </div>
             ])
         }
-            <Pagination />
+            <ReactPaginate className='flex justify-center items-center gap-5'
+            previousLabel={'Prev'}
+            previousClassName='bg-red-600 px-5 py-2 rounded-full ' 
+            nextLabel={'Next'}
+            nextClassName='bg-red-600 px-5 py-2 rounded-full '
+            breakLabel={''}
+            pageCount={25}
+            onPageChange={handlePageClick}
+            />
+            {/* <Pagination pages={howManyPages} setCurrentPage={setCurrentPage} /> */}
         </div>
 
     </div>
