@@ -1,5 +1,3 @@
 # altSchool_assignment2
-[
-](https://altschoolrandomuser.netlify.app/)
-live link: [
-](https://altschoolrandomuser.netlify.app/)
+
+live link: ttps://altschoolrandomuser.netlify.app
